@@ -1,0 +1,1 @@
+export interface AppState{} // interface for the state of the application

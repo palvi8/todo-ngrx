@@ -1,0 +1,30 @@
+<section class="todo-app">
+    <h1>TODO APP</h1>
+    <div class="todo-app__card">
+        <div class="search">
+            <input #todo type="text" class="todo-app__card--add" placeholder="Enter Your Todos" [(ngModel)]="inputValue" (keyup.enter)="addTodo($event)">
+            <!-- <button type="submit" (click)="addTodo(todo.value)">Add todo</button> -->
+        </div>
+        <div>
+            <ul class="todo-app__list">
+                <!-- <app-todo-list *ngFor="let todo of todos" [todoItem]="todo"></app-todo-list> -->
+                <li  *ngFor="let todo of (todos$ | async)" class="todo-app__list--item">
+                    <!-- <input type="checkbox" type="checkbox" [checked]="todo.isDone" (change)="toggleTodo(todo)"> -->
+                    <!-- <input type="checkbox" [value]="todo.name" [(ngModel)]="todo.isSelected"> -->
+                    <!-- <input type="checkbox" (change)="onCheckboxChanged($event, todo)"> -->
+                    <input type="checkbox" (change)="selectID(todo, $event)">
+                    <span class="todo-app__list--name">{{todo.name | titlecase}}</span>
+                    <button class="update" (click)="toggleUpdate()">update</button>
+                    <button class="delete" (click)="deleteTodo(todo)">delete</button>
+                    <input *ngIf="showUpdate" type="text" [(ngModel)]="newTodo">
+                    <button *ngIf="showUpdate" class="save" (click)="updateTodo(todo, newTodo)">save</button>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <span>{{ (todos$ | async).length}} items</span>   
+            <button (click)="allClear()">All Clear</button>
+            <!-- <button *ngIf="showClear" (click)="clearTodos()">All clear</button> -->
+        </footer>
+    </div>
+</section>

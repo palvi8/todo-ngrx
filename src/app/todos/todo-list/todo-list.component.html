@@ -1,0 +1,7 @@
+<li  class="todo-app__list--item">
+    <span class="todo-app__list--name">{{todoItem.name | titlecase}}</span>
+    <button class="update" (click)="toggleUpdate()">update</button>
+    <button class="delete" (click)="deleteTodo(todo)">delete</button>
+    <input *ngIf="showUpdate" type="text">
+    <button *ngIf="showUpdate" class="save" (click)="updateTodo(todo)">save</button>
+</li>
